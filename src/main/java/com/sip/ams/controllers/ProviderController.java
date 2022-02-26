@@ -45,10 +45,12 @@ public class ProviderController {
 		Provider provider = new Provider();// object dont la valeur des attributs par defaut
 		model.addAttribute("provider", provider);
 		return "provider/addProvider";
+		//return "redirect:add";
+		
 	}
 
 	@PostMapping("add")
-	public String addProvider(@Valid Provider provider, BindingResult result, Model model) {
+	public String addProvider(@Valid Provider provider, BindingResult result) {
 		if (result.hasErrors()) {
 			return "provider/addProvider";
 		}
