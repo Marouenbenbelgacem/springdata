@@ -1,12 +1,17 @@
 
 package com.sip.ams.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+
 
 @Entity
 public class Provider {
@@ -22,7 +27,10 @@ public class Provider {
 	@NotBlank(message = "Email is mandatory")
 	@Column(name = "email")
 	private String email;
-
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "provider")
+	private List<Article> articles;
+	
 	public Provider() {
 	}
 
@@ -63,4 +71,10 @@ public class Provider {
 	public String getAddress() {
 		return address;
 	}
+	public List<Article> getArticles() {
+		return articles;
+		}
+		public void setArticles(List<Article> articles) {
+		this.articles = articles;
+		}
 }
